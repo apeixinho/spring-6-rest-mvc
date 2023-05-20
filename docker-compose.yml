@@ -1,0 +1,23 @@
+version: '3'
+
+services: 
+  database:
+    image: mariadb:10
+    container_name: BeerDB
+    volumes:
+      - ./dbdata:/var/lib/mysql
+      # - ./src/scripts/mysql-init.sql:/docker-entrypoint-initdb.d/1.sql
+      # - ./src/scripts/add-order-tables.sql:/docker-entrypoint-initdb.d/2.sql
+    restart: on-failure:10
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: supass
+      MARIADB_DATABASE: beerdb
+      MARIADB_USER: beer
+      MARIADB_PASSWORD: beer
+
+networks:
+  default:
+    name: beerdb
+    
