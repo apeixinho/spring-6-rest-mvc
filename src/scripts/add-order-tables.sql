@@ -1,5 +1,6 @@
-drop table if exists beer_order_line;
-drop table if exists beer_order;
+BEGIN;
+DROP TABLE IF EXISTS beer_order_line;
+DROP TABLE IF EXISTS beer_order;
 
 CREATE TABLE `beer_order`
 (
@@ -27,3 +28,4 @@ CREATE TABLE `beer_order_line`
     CONSTRAINT FOREIGN KEY (beer_order_id) REFERENCES beer_order (id),
     CONSTRAINT FOREIGN KEY (beer_id) REFERENCES beer (id)
 ) ENGINE = InnoDB;
+COMMIT;
