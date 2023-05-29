@@ -1,0 +1,22 @@
+version: "3"
+
+services: 
+  database:
+    image: mariadb:10
+    container_name: restdb
+    volumes:
+      - ./dbdata:/var/lib/mysql
+      # - ./backend/schema/luv2shop_db_user.sql:/docker-entrypoint-initdb.d/1.sql
+    restart: on-failure:10
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_DATABASE: restdb
+      MARIADB_USER: restadmin
+      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: su_pass
+
+networks:
+  default:
+    name: restdb-network
+    
